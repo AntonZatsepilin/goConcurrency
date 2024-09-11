@@ -1,0 +1,6 @@
+[ID] 993 | [EMAIL] user993@mail.ru
+ [ACTIVITY LOG]
+0. [create record] at 2024-09-11 18:26:50.460267 +0300 MSK m=+0.085582225 
+1. [delete record] at 2024-09-11 18:26:50.46027 +0300 MSK m=+0.085584458 
+2. [logged out] at 2024-09-11 18:26:50.46027 +0300 MSK m=+0.085584612 
+3. [create record] at 2024-09-11 18:26:50.46027 +0300 MSK m=+0.085584747 
