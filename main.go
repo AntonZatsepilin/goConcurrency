@@ -35,17 +35,16 @@ func (u User) getActivityInfo() string {
 	return out
 }
 
-func generateUsers(count int) []User {
-	users := make([]User, count)
-
+func generateUsers(count int, users chan User) {
 	for i := 0; i < count; i++ {
-		users[i] = User{
+		users <- User{
 			id:    i + 1,
 			email: fmt.Sprintf("user%d@mail.ru", i+1),
 			logs:  generateLogs(rand.Intn(1000)),
 		}
+		// time.Sleep(time.Millisecond * 10)
 	}
-	return users
+	close(users)
 }
 
 func generateLogs(count int) []logItem {
@@ -83,11 +82,13 @@ func main() {
 
 	t := time.Now()
 
-	users := generateUsers(1000)
+	users := make(chan User)
+
+	go generateUsers(1000, users)
 
 	wg.Add(1000)
 
-	for _, user := range users {
+	for user := range users {
 		go saveUserInfo(user, &wg)
 	}
 	wg.Wait()
